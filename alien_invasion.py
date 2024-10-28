@@ -2,6 +2,7 @@ import pygame
 import sys
 from settings import Settings
 from ship import Ship
+from bullets import Bullet 
 
 class AlienInvasion:
     def __init__(self):
@@ -13,6 +14,8 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode(self.settings.window_size)
 
         self.ship = Ship(self)
+
+        self.bullet = Bullet(self)
 
     def check_events(self):
         for event in pygame.event.get():
@@ -33,6 +36,8 @@ class AlienInvasion:
         self.screen.fill(self.settings.bg_color)
         self.ship.draw_ship()
         self.ship.move_ship()
+        self.bullet.draw_bullet()
+        self.bullet.update()
         pygame.display.flip()
 
     def run_game(self):
@@ -42,4 +47,7 @@ class AlienInvasion:
 
 
 game = AlienInvasion()
+
+
+
 game.run_game()
